@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="aaa">11111</button>
+	<script>
+		// window.id='2222';
+		// document.getElementById('aaa').onclick=function(){
+		// 	console.log(this.id);//this指向的是当前选中的div
+		// 	var fun=function(){
+		// 		console.log(this.id);
+		// 	}
+		// 	fun();//this指向的是window
+		// 	fun.call(this);//this指向的是当前选中的div
+		// 	fun.apply(this);
+		// }
+		var aa={
+			length:0
+		};
+		Array.prototype.push.call(aa,'1111');
+		alert(aa.length);
+		alert(aa[0]);
+	</script>
+</body>
+</html>

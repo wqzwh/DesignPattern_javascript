@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>工厂模式</title>
+</head>
+<body>
+	<script>
+
+	// 1、定义一个人，这个人有基本属性，姓名，年龄，身高  挂有 say方法
+	// 2、老师也属于人，继承人的基本属性，老师还是特定的属性方法，教书课程方法
+	// 3、学生也属于人，继承人的基本属性，学生有特定的方法，班级方法
+
+	function Person (name,age,height) {
+		this.name=name;
+		this.age=age;
+		this.height=height;
+	};
+
+	Person.prototype.say=function(){
+		console.log(this.name+''+this.age+''+this.height);
+	};
+
+	function Teacher(){
+		
+	}
+
+	var teacher=new Person();
+	teacher.prototype
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
