@@ -3,13 +3,74 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
+	<button id="count">点我</button>
+	<div id="show"></div>
 	<script>
+		var Event=(function(){
+			var clientList={},
+				listen,
+				release,
+				remove;
 
-	
+			listen=function(key,fn){
+				if(!clientList[key]){// 如果还没有订阅过此类消息，给该类消息创建一个缓存列表
+					clientList[ key ] = [];
+				}
+				clientList[key].push(fn)
+			};
 
+			release=function(){
+				// 取出对应的key和对应的fns函数
+				var key=Array.prototype.shift.call(arguments);
+				var fns=clientList[ key ];
+				if(!fns || fns.length === 0){//判断是否存在对应key的函数
+					return false
+				}
+				for(var i=0,fn;fn=fns[i++];){
+					fn.apply(this,arguments);
+				}
+			}
+
+			remove=function(key,fn){
+				var fns=clientList[key];
+				// 如果不存在fns那么就是直接返回false，无人订阅
+				if(!fns){
+					return false
+				}
+
+				// 如果没有传入fn，也需要取消对应的key
+				if(!fn){
+					fns && ( fns.length = 0 );
+				}else{
+					for ( var l = fns.length - 1; l >=0; l-- ){ // 反向遍历订阅的回调函数列表
+						var _fn = fns[ l ];
+						if ( _fn === fn ){
+							fns.splice( l, 1 ); // 删除订阅者的回调函数
+						}
+					}
+				}
+			}
+			return {
+				listen:listen,
+				release:release,
+				remove:remove
+			}
+		})();
+		var a=(function(){
+			var count=0;
+			var button=document.getElementById( 'count' );
+			button.onclick=function(){
+				Event.release('add', count++);
+			}
+		})();
+		var b=(function(){
+			var show=document.getElementById( 'show' );
+			Event.listen( 'add', function( count ){
+				show.innerHTML = count;
+			});
+		})()
 	</script>
 </body>
 </html>
