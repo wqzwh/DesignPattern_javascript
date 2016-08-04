@@ -46,4 +46,68 @@ var coffee=new Coffee();
 coffee.init();
 
 
+// 钩子方法 正对特殊的需求
+// 改写以上的代码
+// 定义一个钩子，默认是需要执行钩子里面的方法
+Beverage.prototype.customerWantsCondiments=function(){
+    return true;
+}
+// 初始化方法init()
+Beverage.prototype.init=function(){
+    this.boilWater();
+    this.brew();
+    this.pourInCup();
+    if(this.customerWantsCondiments()){
+        this.addCondiments();
+    }
+}
+Coffee.prototype.customerWantsCondiments=function(){ 
+    return false; //证明不需要调料
+}
+Coffee.init();
+
+
+
+// 不用继承也能实现上面的效果
+// 用函数作为参数的方法来实现
+var Beverage=function(param){
+    var boilWater=function(){
+        console.log('把水煮沸');
+    }
+    var brew=param.brew || function(){
+        console.log('必须定义泡方法');
+    }
+    var pourInCup=param.pourInCup || function(){
+        console.log('必须定义倒方法');
+    }
+    var addCondiments=param.addCondiments || function(){
+        console.log('必须定义添加原料方法');
+    }
+    // 定义一个方法
+    var F=function(){}
+    // 初始化这些方法的顺序
+    F.prototype.init=function(){
+        boilWater();
+        brew();
+        pourInCup();
+        addCondiments();
+    };
+    return F;
+}
+
+var Coffee=Beverage({
+    brew:function(){
+        console.log( '用沸水冲泡咖啡' );
+    },
+    pourInCup:function(){
+        console.log( '把咖啡倒进杯子' );
+    },
+    addCondiments:function(){
+        console.log( '加糖和牛奶' );
+    }
+});
+var coffee=new Coffee();
+coffee.init();
+
+
 
