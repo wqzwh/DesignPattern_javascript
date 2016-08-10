@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button tag="login" id="button">点击打开登录浮层</button>
+    <script>
+        // 给所有方法添加一个after方法，传入的参数是一个函数
+        Function.prototype.after=function(fn){
+            var self=this;
+            return function(){
+                self.apply(this,arguments);
+                fn.apply(this,arguments);
+                // return ret;
+            }
+        }
+
+        Function.prototype.before=function(fn){
+            var self=this;
+            return function(){
+                fn.apply(this,arguments);
+                self.apply(this,arguments);
+                
+                // return ret;
+            }
+        }
+
+        var showLogin = function(){
+            console.log( '打开登录浮层' );
+        }
+        var showB=function(){
+            console.log( '打开登录浮层之前需要做的事情' );
+        }
+        var log = function(){
+            console.log( '上报标签为: ' + this.getAttribute( 'tag' ) );
+        }
+
+        showLogin=showLogin.before(showB).after(log);
+
+        document.getElementById( 'button' ).onclick = showLogin;
+    </script>
+</body>
+</html>

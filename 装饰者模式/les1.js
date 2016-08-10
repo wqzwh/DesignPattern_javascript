@@ -27,7 +27,7 @@ plane.fire();// 分别输出： 发射普通子弹、发射导弹、发射原子
 // JavaScript 的装饰者
 var plane = {
     fire: function(){
-        console.log( '发射普通子弹' );
+        console.log('发射普通子弹');
     }
 }
 var missileDecorator = function(){
