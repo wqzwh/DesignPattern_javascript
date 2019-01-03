@@ -84,3 +84,34 @@ agent.phone
 agent.price
 agent.newPrice = 20000
 agent.newPrice = 200000
+
+
+/** 
+ * 
+ * 虚拟代理实现图片预加载
+ * 
+*/
+const myImage=(() =>{
+  const imgNode = document.createElement('img');
+  document.body.appendChild(imgNode);
+  return {
+    setSrc(src) {
+      imgNode.src = src;
+    }
+  }
+})()
+
+// 定义一个代理函数
+const proxyImage=(() => {
+  const img = new Image();
+  img.onload = () => {
+    myImage.setSrc(this.src);
+  }
+  return {
+    setSrc(src) { 
+      myImage.setSrc('loading.gif');
+      img.src = src;
+    }
+  }
+})()
+proxyImage.setSrc('large.jpg');
