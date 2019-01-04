@@ -63,7 +63,7 @@ module.exports = {
     'no-caller': 2,
     'no-console': 'off',
     'no-class-assign': 2,
-    'no-cond-assign': 2,
+    'no-cond-assign': 0,
     'no-const-assign': 2,
     'no-control-regex': 2,
     'no-delete-var': 2,
@@ -142,7 +142,7 @@ module.exports = {
     'no-whitespace-before-property': 2,
     'no-with': 2,
     'one-var': [2, {
-      'initialized': 'never'
+      'initialized': 'consecutive'
     }],
     'operator-linebreak': [2, 'after', {
       'overrides': {
