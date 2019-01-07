@@ -12,3 +12,4 @@
 | 状态模式 | <img src="https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/状态机模式/Main.png" width="200" height="100" /> | - [示例代码](https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/状态机模式/index.js) |
 | 中介者模式 | <img src="https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/中介者模式/Main.png" width="200" height="100" /> | - [示例代码](https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/中介者模式/les1.js) |
 | 享元模式 |  | - [示例代码](https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/享元模式/les1.js) |
+| 建造者模式 | <img src="https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/建造者模式/Main.png" width="200" height="100" /> | - [示例代码](https://github.com/wqzwh/DesignPattern_javascript/blob/master/src/建造者模式/index.js) |
