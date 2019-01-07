@@ -68,7 +68,7 @@ const agent = new Proxy(star, {
   },
 
   set(target, key, value, receiver) {
-    let price = 120000
+    const price = 120000
     if (key === 'newPrice') {
       if (value >= price) {
         console.log(`参加演出活动，演出活动的费用是${value}`)
@@ -85,33 +85,32 @@ agent.price
 agent.newPrice = 20000
 agent.newPrice = 200000
 
-
-/** 
- * 
+/**
+ *
  * 虚拟代理实现图片预加载
- * 
-*/
-const myImage=(() =>{
-  const imgNode = document.createElement('img');
-  document.body.appendChild(imgNode);
+ *
+ */
+const myImage = (() => {
+  const imgNode = document.createElement('img')
+  document.body.appendChild(imgNode)
   return {
     setSrc(src) {
-      imgNode.src = src;
+      imgNode.src = src
     }
   }
 })()
 
 // 定义一个代理函数
-const proxyImage=(() => {
-  const img = new Image();
+const proxyImage = (() => {
+  const img = new Image()
   img.onload = () => {
-    myImage.setSrc(this.src);
+    myImage.setSrc(this.src)
   }
   return {
-    setSrc(src) { 
-      myImage.setSrc('loading.gif');
-      img.src = src;
+    setSrc(src) {
+      myImage.setSrc('loading.gif')
+      img.src = src
     }
   }
 })()
-proxyImage.setSrc('large.jpg');
+proxyImage.setSrc('large.jpg')
