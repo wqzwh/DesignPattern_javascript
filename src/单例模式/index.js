@@ -15,7 +15,7 @@ class Singleton {
 
   static getInstance() {
     return (() => {
-      if(!this[_instance]) {
+      if (!this[_instance]) {
         this[_instance] = new Singleton()
       }
       return this[_instance]
@@ -23,7 +23,7 @@ class Singleton {
   }
 
   toLogin() {
-    if(this[_login]) {
+    if (this[_login]) {
       console.log('已经登陆')
       return
     }
